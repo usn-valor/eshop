@@ -51,11 +51,30 @@
     </div>
 
     <div class="content p-4">
-        <h2 class="mb-4">Blank/Starter</h2>
+        <h2 class="mb-4">Products</h2>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                This is a blank page you can use as a starting point.
+        <div class="container">
+            <div class="row py-2">
+                <div class="col-12">
+                    <table class="table table-bordered my-2">
+                        <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}" >
+                            <th th:text="${product.id}" scope="row">1</th>
+                            <td th:text="${product.product_name}">Alex</td>
+                            <td th:text="${product.description}">Description</td>
+                            <td th:text="${product.price}">Description</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

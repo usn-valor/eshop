@@ -1,0 +1,9 @@
+package ru.home.persist.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import ru.home.persist.model.Product;
+import ru.home.persist.model.User;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+}
+
