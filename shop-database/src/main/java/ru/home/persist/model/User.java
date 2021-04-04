@@ -26,7 +26,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String login) {
+    public User(Long id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -55,5 +55,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-}
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+}

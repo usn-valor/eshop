@@ -17,10 +17,13 @@ public class Category implements Serializable {
     @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @OneToMany(
+            mappedBy = "category",
+            cascade = CascadeType.ALL)
     private List<Product> products;
 
     public Category() {
+
     }
 
     public Category(String name) {
@@ -56,11 +59,12 @@ public class Category implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return name.equals(category.name);
+        return id.equals(category.id) &&
+                name.equals(category.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id, name);
     }
 }

@@ -1,44 +1,42 @@
 package ru.home.persist.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(length = 128, unique = true, nullable = false)
-    private String product_name;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(length = 512, nullable = false)
-    private String description;
-
-    @Column
+    @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "products_categories",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    @ManyToOne(optional = false)
+    private Category category;
+
+    @ManyToOne(optional = false)
+    private Brand brand;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
 
     public Product() {
     }
 
-    public Product(Long id, String product_name, String description, BigDecimal price) {
-        this.id = id;
-        this.product_name = product_name;
-        this.description = description;
+    public Product(String name, BigDecimal price, Category category, Brand brand) {
+        this.name = name;
         this.price = price;
-    }
-
-    public Product(String product_name) {
-        this.product_name = product_name;
+        this.category = category;
+        this.brand = brand;
     }
 
     public Long getId() {
@@ -49,20 +47,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getName() {
+        return name;
     }
 
-    public void setProduct_name(String productName) {
-        this.product_name = productName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getPrice() {
@@ -73,13 +63,27 @@ public class Product {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productName='" + product_name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 }
-
