@@ -192,11 +192,11 @@
                                 </div>
                             </div>
                             <div class="categories_product_area">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row" th:each="product: ${userProducts}">
+                                    <div class="col-lg-4 col-sm-6"  th:each="image: ${product.pictures}">
                                         <div class="l_product_item">
                                             <div class="l_p_img">
-                                                <img src="img/product/c-product-1.jpg" alt="">
+                                                <img th:src="@{/picture/{id}(id = ${image.id})}" width="270" height="320" alt="">
                                                 <h5 class="new">New</h5>
                                             </div>
                                             <div class="l_p_text">
@@ -205,8 +205,8 @@
                                                     <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
                                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                                 </ul>
-                                                <h4>Travel Bags</h4>
-                                                <h5><del>$45.50</del>  $40</h5>
+                                                <h4 th:text="${product.name}">Travel Bags</h4>
+                                                <h5><del th:text="${product.price}">$45.50</del>  1200</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -338,7 +338,7 @@
                                                     <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
                                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                                 </ul>
-                                                
+
                                                 <h4>Summer Dress</h4>
                                                 <h5>$110</h5>
                                             </div>
