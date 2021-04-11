@@ -2,42 +2,43 @@ package ru.home.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ru.home.error.SWWException;
-import ru.home.service.ProductForUserService;
+import org.springframework.web.bind.annotation.*;
+import ru.home.persist.repo.CategoryRepository;
+import ru.home.service.ProductService;
 
 @Controller
-@RequestMapping("product")
+@RequestMapping
 public class ProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-    private final ProductForUserService productForUserService;
+    private final CategoryRepository categoryRepository;
 
-    @Autowired
-    public ProductController(ProductForUserService productForUserService) {
-        this.productForUserService = productForUserService;
+    private final ProductService productService;
+
+    public ProductController(CategoryRepository categoryRepository, ProductService productService) {
+        this.categoryRepository = categoryRepository;
+        this.productService = productService;
     }
 
     @GetMapping
-    public String productListPage(Model model) {
+    public String productListPage(@RequestParam(value = "categoryId", required = false) Long categoryId,
+                                  Model model) {
         logger.info("Product list page");
 
-       model.addAttribute("userProducts", productForUserService.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("products", productService.findByFilter(categoryId));
 
         return "categories-left-sidebar";
     }
 
-    @GetMapping("/{id}")
-    public String productItem(@PathVariable("id") Long id, Model model) {
-        logger.info("Product page");
+    @GetMapping("/product/{id}")
+    public String productPage(@PathVariable("id") Long id, Model model) {
+        logger.info("Product page {}", id);
 
-        model.addAttribute("productDetail", productForUserService.findById(id).orElseThrow(SWWException::new));
+        model.addAttribute("product", productService.findById(id).orElseThrow(NotFoundException::new));
 
         return "product-details";
     }
