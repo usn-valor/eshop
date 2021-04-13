@@ -28,6 +28,7 @@ public class CartController {
     @GetMapping
     public String mainPage(Model model) {
         model.addAttribute("lineItems", cartService.getLineItems());
+        model.addAttribute("total", cartService.getTotal());
         return "shopping-cart";
     }
 

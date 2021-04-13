@@ -31,7 +31,7 @@
                                     </thead>
                                     <tbody>
 
-                                        <tr th:each="lineItem : ${lineItems}">
+                                        <tr th:each="lineItem : ${lineItems}" th:object="${lineItem}">
                                             <th scope="row">
                                                 <img src="img/icon/close-icon.png" alt="">
                                             </th>
@@ -91,9 +91,9 @@
                                 <h3 class="cart_single_title">Discount Cupon</h3>
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Cart Subtotal</span> $400.00</a></li>
+                                        <li><a href="#"><span>Cart Subtotal</span> [[${total}]]</a></li>
                                         <li><a href="#"><span>Shipping</span> Free</a></li>
-                                        <li><a href="#"><span>Totals</span> $400.00</a></li>
+                                        <li><a href="#"><span>Totals</span> [[${total}]]</a></li>
                                     </ul>
                                 </div>
                                 <button type="submit" class="btn btn-primary update_btn">update cart</button>

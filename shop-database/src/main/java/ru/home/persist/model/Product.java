@@ -26,7 +26,7 @@ public class Product implements Serializable {
     @ManyToOne(optional = false)
     private Brand brand;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL) // обеспечивает синхронность действий между двумя сущностями
     private List<Picture> pictures;
 
     public Product() {
