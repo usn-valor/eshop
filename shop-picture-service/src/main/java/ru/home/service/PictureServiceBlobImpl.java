@@ -25,13 +25,15 @@ public class PictureServiceBlobImpl implements PictureService {
         return repository.findById(id)
                 .filter(pic -> pic.getPictureData().getData() != null)
                 .map(Picture::getContentType);
+//        return repository.getContentTypeForBlob(id);
     }
 
     @Override
     public Optional<byte[]> getPictureDataById(long id) {
-        return repository.findById(id)
-                .filter(pic -> pic.getPictureData().getData() != null)
-                .map(pic -> pic.getPictureData().getData());
+//        return repository.findById(id)
+//                .filter(pic -> pic.getPictureData().getData() != null)
+//                .map(pic -> pic.getPictureData().getData());
+        return repository.getPictureDataForBlob(id);
     }
 
     @Override

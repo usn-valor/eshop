@@ -19,39 +19,41 @@
                         <div class="cart_product_list">
                             <h3 class="cart_single_title">Discount Cupon</h3>
                             <div class="table-responsive-md">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">product</th>
-                                            <th scope="col">price</th>
-                                            <th scope="col">quantity</th>
-                                            <th scope="col">total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                <form>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">product</th>
+                                                <th scope="col">price</th>
+                                                <th scope="col">quantity</th>
+                                                <th scope="col">total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                        <tr th:each="lineItem : ${lineItems}">
-                                            <th scope="row">
-                                                <img src="img/icon/close-icon.png" alt="">
-                                            </th>
-                                            <td>
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/picture/{id}(id = ${lineItem.productRepr.pictureId})}" alt="">
+                                            <tr th:each="lineItem : ${lineItems}" th:object="${lineItem}">
+                                                <th scope="row">
+                                                    <img src="img/icon/close-icon.png" alt="">
+                                                </th>
+                                                <td>
+                                                    <div class="media">
+                                                        <div class="d-flex">
+                                                            <img th:src="@{/picture/{id}(id = ${lineItem.productRepr.pictureId})}" alt="">
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4>[[${lineItem.productRepr.name}]]</h4>
+                                                        </div>
                                                     </div>
-                                                    <div class="media-body">
-                                                        <h4>[[${lineItem.productRepr.name}]]</h4>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td><p>$[[${lineItem.productRepr.price}]]</p></td>
-                                            <td><input type="text" th:value="${lineItem.qty}"></td>
-                                            <td><p>[[${lineItem.total}]]</p></td>
-                                        </tr>
+                                                </td>
+                                                <td><p>$[[${lineItem.productRepr.price}]]</p></td>
+                                                <td><input type="text" th:value="${lineItem.qty}"></td>
+                                                <td><p>[[${lineItem.total}]]</p></td>
+                                            </tr>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </form>
                             </div>
                         </div>
                         <div class="calculate_shoping_area">
@@ -91,9 +93,9 @@
                                 <h3 class="cart_single_title">Discount Cupon</h3>
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Cart Subtotal</span> $400.00</a></li>
+                                        <li><a href="#"><span>Cart Subtotal</span> [[${total}]]</a></li>
                                         <li><a href="#"><span>Shipping</span> Free</a></li>
-                                        <li><a href="#"><span>Totals</span> $400.00</a></li>
+                                        <li><a href="#"><span>Totals</span> [[${total}]]</a></li>
                                     </ul>
                                 </div>
                                 <button type="submit" class="btn btn-primary update_btn">update cart</button>

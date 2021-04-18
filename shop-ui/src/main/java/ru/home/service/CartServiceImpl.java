@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.home.controller.repr.ProductRepr;
 import ru.home.service.model.LineItem;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -38,5 +39,14 @@ public class CartServiceImpl implements CartService {
     public List<LineItem> getLineItems() {
         lineItems.forEach(LineItem::setQty);
         return new ArrayList<>(lineItems.keySet());
+    }
+
+    @Override
+    public BigDecimal getTotal() {
+        BigDecimal sum = new BigDecimal(0);
+        for (LineItem li: getLineItems()) {
+            sum = sum.add(li.getTotal());
+        }
+        return sum;
     }
 }
