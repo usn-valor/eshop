@@ -25,11 +25,13 @@ public class ProductController {
 
     @GetMapping
     public String productListPage(@RequestParam(value = "categoryId", required = false) Long categoryId,
+                                  @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                  @RequestParam(value = "size", required = false, defaultValue = "6") Integer size,
                                   Model model) {
         logger.info("Product list page");
 
         model.addAttribute("categories", categoryRepository.findAll());
-        model.addAttribute("products", productService.findByFilter(categoryId));
+        model.addAttribute("products", productService.findByFilter(categoryId, page, size));
 
         return "categories-left-sidebar";
     }

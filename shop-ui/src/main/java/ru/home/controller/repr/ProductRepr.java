@@ -5,15 +5,18 @@ import java.util.List;
 
 public class ProductRepr {
 
-    private final Long id;
+    private Long id;
 
-    private final String name;
+    private String name;
 
-    private final BigDecimal price;
+    private BigDecimal price;
 
-    private final Long pictureId;
+    private Long pictureId;
 
-    private final List<Long> pictureIds;
+    private List<Long> pictureIds;
+
+    public ProductRepr() {
+    }
 
     public ProductRepr(Long id, String name, BigDecimal price, Long pictureId, List<Long> pictureIds) {
         this.id = id;
@@ -27,19 +30,39 @@ public class ProductRepr {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public Long getPictureId() {
         return pictureId;
     }
 
+    public void setPictureId(Long pictureId) {
+        this.pictureId = pictureId;
+    }
+
     public List<Long> getPictureIds() {
         return pictureIds;
+    }
+
+    public void setPictureIds(List<Long> pictureIds) {
+        this.pictureIds = pictureIds;
     }
 }
