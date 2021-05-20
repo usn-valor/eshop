@@ -37,6 +37,7 @@
         <module>shop-admin-ui</module>
         <module>shop-ui</module>
         <module>shop-picture-service</module>
+        <module>rabbit-mq-messanger</module>
     </modules>
 
 </project>
