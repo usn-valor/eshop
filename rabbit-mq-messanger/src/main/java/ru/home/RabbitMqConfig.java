@@ -1,4 +1,4 @@
-package ru.geekbrains;
+package ru.home;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

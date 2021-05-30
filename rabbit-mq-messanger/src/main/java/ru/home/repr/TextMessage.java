@@ -1,4 +1,4 @@
-package ru.geekbrains.repr;
+package ru.home.repr;
 
 public class TextMessage {
 
