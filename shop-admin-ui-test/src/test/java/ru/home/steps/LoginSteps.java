@@ -52,12 +52,41 @@ public class LoginSteps {
         webDriver.findElement(By.id("logged-in-username"));
     }
 
+    @When("^Open Menu Brands$")
+    public void openMenuBrands() throws InterruptedException {
+        WebElement webElement = webDriver.findElement(By.id("brands-table"));
+        Thread.sleep(1000);
+        webElement.click();
+    }
+
+    @When("^I click on create new button$")
+    public void createNewBrand() throws InterruptedException {
+        WebElement webElement = webDriver.findElement(By.id("create-new-el"));
+        Thread.sleep(1000);
+        webElement.click();
+        Thread.sleep(1000);
+    }
+
+    @When("^I enter brand name as \"([^\"]*)\"")
+    public void iEnterNewBrandName(String brandName) throws Throwable {
+        WebElement webElement = webDriver.findElement(By.id("name"));
+        webElement.sendKeys(brandName);
+    }
+
+    @When("^Submit new Brand$")
+    public void submitNewBrand() throws InterruptedException {
+        WebElement webElement = webDriver.findElement(By.id("subm"));
+        Thread.sleep(1000);
+        webElement.click();
+        Thread.sleep(1000);
+    }
+
     @When("^Open dropdown menu$")
     public void openDropDownMenu() throws InterruptedException {
         WebElement webElement = webDriver.findElement(By.id("logged-in-username"));
         Thread.sleep(1000);
         webElement.click();
-        Thread.sleep(10000);
+        Thread.sleep(1000);
     }
 
     @When("^click logout button$")
