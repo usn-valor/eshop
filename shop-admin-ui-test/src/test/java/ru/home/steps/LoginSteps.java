@@ -67,7 +67,7 @@ public class LoginSteps {
         Thread.sleep(1000);
     }
 
-    @When("^I enter brand name as \"([^\"]*)\"")
+    @When("^I enter brand name as \"([^\"]*)\"$")
     public void iEnterNewBrandName(String brandName) throws Throwable {
         WebElement webElement = webDriver.findElement(By.id("name"));
         webElement.sendKeys(brandName);
